@@ -11,6 +11,7 @@ img {
 	max-width: 100%;
 }
 
+
 .col {
 	padding: 3%;
 }
@@ -39,7 +40,9 @@ img {
 }
 
 #rightCol {
+	height: 100vh;
 	flex: 3;
+	overflow: scroll;
 }
 
 #leftCol {

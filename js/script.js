@@ -26,16 +26,16 @@ var stateQuery = function(stateInput) {
     var stateUrlRoot = "http://openstates.org/api/v1/metadata/"
     stateUrlRoot += stateInput + '/'
     legislatorParams.state = stateInput
-    
+
 
     var legislatorsUrlFull = legislatorsUrlRoot + genParamString(legislatorParams)
     var stateUrlFull = stateUrlRoot + genParamString(stateParams)
-    
+
 
     var legislatorPromise = $.getJSON(legislatorsUrlFull)
     var statePromise = $.getJSON(stateUrlFull)
-	// hand our functions over to the promise objects, so they 
-	// can be invoked when the data is ready.
+        // hand our functions over to the promise objects, so they 
+        // can be invoked when the data is ready.
     statePromise.then(stateDataHandler)
     legislatorPromise.then(legislatorDataHandler)
 
@@ -128,3 +128,22 @@ var legislatorDataHandler = function(legislatorsArray) {
     var rightContainer = document.querySelector('#rightCol')
     rightContainer.innerHTML = htmlCards
 }
+
+var StatesRouter = Backbone.Router.extend({
+    routes: {
+        "home": "showHomePage",
+        "search/:state": "doStateSearch"
+    },
+    showHomePage: function() {
+        containerNode.innerHTML = "<p>Welcome to State Stats, enter your state abbreviation in the search bar </p>"
+    },
+
+})
+
+var rtr = new StatesRouter()
+
+// 
+Backbone.history.start()
+
+
+
